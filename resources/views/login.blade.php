@@ -32,14 +32,15 @@
                 </div>
               </div>
               <br>
-              <form action="{{url('/logtest')}}" method="post">
+              <form action="{{action('HomeController@goLogin')}}" method="post">
+                {!! csrf_field() !!}
                 <div class="form-group">
-                  <label for="username">Usuario:</label>
-                  <input type="text" class="form-control" id="username">
+                  <label for="user">Usuario: </label>
+                  <input type="text" class="form-control" id="user" name="user">
                 </div>
                 <div class="form-group">
-                  <label for="pwd">Contraseña:</label>
-                  <input type="password" class="form-control" id="pwd">
+                  <label for="password">Contraseña: </label>
+                  <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <button type="submit" name="button" class="btn btn-default">Entrar  </button>
               </form>

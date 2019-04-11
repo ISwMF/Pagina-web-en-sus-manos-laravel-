@@ -22,38 +22,51 @@
           </div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">INICIO</a></li>
-            <li><a href="#">PERFIL</a></li>
-            <li><a href="#">REPORTES</a></li>
-            <li><a href="#">SOBRE</a></li>
+            @if(Session::has('name'))
+              <li><a href="#">PERFIL</a></li>
+              <li><a href="#">REPORTES</a></li>
+              <li><a href="#">SOBRE</a></li>
+            @endif
             <li><a href="#">BUSQUEDA</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            @if(Session::has('name'))
+            <li><a href="#"><span class="glyphicon glyphicon glyphicon-log-out"></span> Logout</a></li>
+            @else
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            @endif
           </ul>
         </div>
       </nav>
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-12">
-            <h2>Bienvenido {{$citizen->user_name}}</h2>
+            <h2>Bienvenid@
+              @if(Session::has('name'))
+                {{Session::get('name')}}
+              @else
+                !
+              @endif
+            </h2>
             <h4></h4>
           </div>
         </div>
         <div class="row">
+          @if(Session::has('name'))
           <div class="col-sm-8">
             <div class="row">
               <div class="col-sm-12">
                 <div class="panel panel-default">
                   <div class="panel-heading">Últimos reportes que realizaste</div>
                   <div class="panel-body">
-                    @if(empty($EventsCreated[0]))
+                    @if(empty(Session::get('EventsCreated')[0]))
                     <div class="panel panel-default">
                       <div class="panel-body">
                         <p>Aún no tienes eventos registrados.</p>
                       </div>
                     </div>
                     @else
-                      @foreach($EventsCreated as $EventCreated)
+                      @foreach(Session::get('EventsCreated') as $EventCreated)
                       <div class="panel panel-default">
                         <div class="panel-body">
                           <div class="row">
@@ -67,7 +80,7 @@
                         </div>
                       </div>
                       @endforeach
-                    <button type="button" name="button" class="btn btn-success btn-sm btn-block">Ver todos</button>
+                      <button type="button" name="button" class="btn btn-success btn-sm btn-block">Ver todos</button>
                     @endif
                   </div>
                 </div>
@@ -78,14 +91,14 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">Últimos reportes que te realizaron</div>
                   <div class="panel-body">
-                    @if(empty($EventsReceived[0]))
+                    @if(empty(Session::get('EventsReceived')[0]))
                     <div class="panel panel-default">
                       <div class="panel-body">
                         <p>Aún no tienes eventos registrados.</p>
                       </div>
                     </div>
                     @else
-                      @foreach($EventsReceived as $EventReceived)
+                      @foreach(Session::get('EventsReceived') as $EventReceived)
                       <div class="panel panel-default">
                         <div class="panel-body">
                           <div class="row">
@@ -106,6 +119,11 @@
               </div>
             </div>
           </div>
+          @else
+          <div class="col-sm-8">
+            <h3>Inicia sesión para ver tus reportes y quién te reportó</h3>
+          </div>
+          @endif
           <div class="col-sm-4">
             <h3 align = "center">Nuestro top 10.</h3>
             <br>

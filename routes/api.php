@@ -17,7 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('users', 'UserControlles');
 Route::resource('events', 'EventController');
 Route::resource('login', 'LoginController');
 Route::get('users/{user}/events', 'EventController@getEventsByCitizen');
