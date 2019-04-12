@@ -2,11 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <title>Inicio</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{!! asset('js/ajax.js') !!}"></script>
   </head>
   <body>
     <div class="container">
@@ -42,7 +44,8 @@
                   <label for="password">Contraseña: </label>
                   <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <button type="submit" name="button" class="btn btn-default">Entrar  </button>
+                <button type="submit" name="button" class="btn btn-default">Entrar (form) </button>
+                <button type="button" name="button" class="btn btn-default" onclick="login(user.value, password.value)">Entrar (ajax)</button>
               </form>
               <br>
               <div class="checkbox">
@@ -56,6 +59,9 @@
         <div class="col-sm-4">
 
         </div>
+      </div>
+      <div class="" id="resultado">
+
       </div>
       <hr>
       <footer>

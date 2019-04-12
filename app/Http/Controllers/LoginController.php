@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Login;
-use App\User;
 
 class LoginController extends Controller
 {
@@ -39,19 +38,7 @@ class LoginController extends Controller
       $login = new Login;
       $login->user_name = $request->user;
       $login->user_password = $request->password;
-      $login->save();
-      //----------------------------------------
-      $user = User::where('user_login', $request->user)->get();
-      if (empty($user[0])) {
-        return "No se ha encontrado coincidencia";
-      }else{
-        if ($request->password == $user[0]->user_password) {
-          session(['user' => $user[0]]);
-          return session('user');
-        }else{
-          return "Contraseña incorrecta";
-        }
-      }
+      return response()->json(['success'=>'success']);
     }
 
     /**

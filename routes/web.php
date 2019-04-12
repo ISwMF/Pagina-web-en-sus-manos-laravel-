@@ -12,15 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/vista1');
 });
 
 /*Route::post('userAuth',[
   'uses' => 'LoginController@store',
   'as'   => 'userView'
 ]);*/
-
-Route::get('/home', 'UserControlles@getHomeInformation');
+Route::get('/', 'HomeController@getDefaultInformation');
+Route::get('/home', 'HomeController@getDefaultInformation');
 
 Route::get('/login', function(){
   return view('login');
@@ -30,3 +30,11 @@ Route::post('home',[
   'uses' => 'HomeController@goLogin',
   'as'   => 'userView'
 ]);
+//Login usando Ajax
+Route::post('postLoginRequestByAjax', 'HomeController@goLoginByAjax');
+
+//Vista de Reportes
+Route::get('/reportes', 'UserEventsController@showEvents');
+
+//salir
+Route::get('/salir', 'HomeController@salir');

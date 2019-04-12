@@ -24,14 +24,14 @@
             <li class="active"><a href="#">INICIO</a></li>
             @if(Session::has('name'))
               <li><a href="#">PERFIL</a></li>
-              <li><a href="#">REPORTES</a></li>
+              <li><a href="/reportes">REPORTES</a></li>
               <li><a href="#">SOBRE</a></li>
             @endif
             <li><a href="#">BUSQUEDA</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             @if(Session::has('name'))
-            <li><a href="#"><span class="glyphicon glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li><a href="/salir"><span class="glyphicon glyphicon glyphicon-log-out"></span> Logout</a></li>
             @else
             <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             @endif
@@ -80,7 +80,7 @@
                         </div>
                       </div>
                       @endforeach
-                      <button type="button" name="button" class="btn btn-success btn-sm btn-block">Ver todos</button>
+                      <button type="button" name="button" class="btn btn-success btn-sm btn-block" onclick="window.location.href='/reportes'">Ver todos</button>
                     @endif
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                         </div>
                       </div>
                       @endforeach
-                    <button type="button" name="button" class="btn btn-success btn-sm btn-block">Ver todos</button>
+                    <button type="button" name="button" class="btn btn-success btn-sm btn-block" onclick="window.location.href='/reportes'">Ver todos</button>
                     @endif
                   </div>
                 </div>

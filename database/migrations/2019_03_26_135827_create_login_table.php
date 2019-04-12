@@ -17,7 +17,6 @@ class CreateLoginTable extends Migration
             $table->increments('id');
             $table->string('user_name');
             $table->string('user_password');
-            $table->dateTime('login_creation');
             //$table->integer('id_citizen')->unsigned();
             //$table->foreign('id_citizen')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
